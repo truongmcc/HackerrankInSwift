@@ -3,5 +3,12 @@
     <pages>
         <page name='Strings'/>
         <page name='Untitled Page'/>
+        <page name='Programmation dynamique'/>
+        <page name='Big Sorting'/>
+        <page name='Implementation'/>
+        <page name='Warmup'/>
+        <page name='Search'/>
+        <page name='Constructive Algorithms'/>
+        <page name='Greedy'/>
     </pages>
 </playground>

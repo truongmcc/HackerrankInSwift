@@ -426,147 +426,40 @@ func highestValuePalindrome(s: String, n: Int, k: Int) -> String {
 }
 //print(highestValuePalindrome(s: "123551", n: 6, k: 4))
 
-// https://www.hackerrank.com/challenges/missing-numbers/problem
-func missingNumbers(arr: [Int], brr: [Int]) -> [Int] {
-    var dicoArr = [Int: Int]()
-    var dicoBrr = [Int: Int]()
-    var tabRes = [Int]()
-    for num in brr.sorted() { dicoBrr[num, default: 0] += 1 }
-    for num in arr.sorted() { dicoArr[num, default: 0] += 1 }
-    for key in Set(brr).sorted() {
-        if dicoBrr[key, default: 0] - dicoArr[key, default: 0] > 0 {
-            tabRes.append(key)
+//https://www.hackerrank.com/challenges/alternating-characters/problem
+func alternatingCharacters(s: String) -> Int {
+    let tab = Array(s)
+    print(tab)
+    var nbDeleted = 0
+    for i in 1..<tab.count {
+        if tab[i - 1] == tab[i] {
+            nbDeleted += 1
         }
     }
-    return tabRes
+    return nbDeleted
 }
-//print(missingNumbers(arr: [203, 204, 205, 206, 207, 208, 203, 204, 205, 206]
-//                     , brr: [203, 204, 204, 205, 206, 207, 205, 208, 203, 206, 205, 206, 204]
-//))
+//print(alternatingCharacters(s: "AAABBB"))
 
-// https://www.hackerrank.com/challenges/equal/problem
-func equal(arr: [Int]) -> Int {
-    print(arr)
-    var count = 0
-    var tabRes = arr
-    print(tabRes)
-    var min = tabRes.min()!
-    var max = tabRes.max()!
-    var diff = 0
-    while max != min {
-        if max - min < 2 { diff =  1 }
-        else if max - min < 5 { diff =  2 }
-        else { diff = 5 }
-        let maxIndex = tabRes.firstIndex(of: max)
-        
-        for i in 0...tabRes.count - 1 {
-            if i != maxIndex { tabRes[i] += diff }
-        }
-        print(tabRes)
-        count += 1
-        min = tabRes.min()!
-        max = tabRes.max()!
-    }
-    return count
-}
-//print(equal(arr: [5, 10, 14, 22]))
-//print(equal(arr: [2, 3, 7, 10]))
-//print(equal(arr: [10, 7, 12]))
-//print(equal(arr: [10, 7, 12]))
-//print(equal(arr: [11, 7, 12, 3]))
-//print(equal(arr: [512, 125, 928, 381, 890, 90, 512, 789, 469, 473, 908, 990, 195, 763, 102, 643, 458, 366, 684, 857, 126, 534, 974, 875, 459, 892, 686, 373, 127, 297, 576, 991, 774, 856, 372, 664, 946, 237, 806, 767, 62, 714, 758, 258, 477, 860, 253, 287, 579, 289, 496]))
-//print(equal(arr: [520, 862, 10, 956, 498, 956, 991, 542, 523, 664, 378, 194, 76 ,90 ,753, 868, 837, 830, 932, 814, 616, 78, 103, 882, 452, 397, 899, 488, 149, 108, 723, 22, 323 ,733 ,330 ,821 ,41 ,322 ,715, 917, 986, 93 ,111, 63 ,535, 864 ,931 ,372, 47 ,215 ,539 ,15 ,294, 642, 897, 98, 391, 796, 939, 540, 257, 662, 562, 580, 747, 893, 401, 789, 215, 468, 58 ,553 ,561 ,169 ,616, 448, 385 ,900 ,173, 432, 115, 712]))
-//print(equal(arr: [134, 415, 784, 202, 34, 584, 543, 119, 701, 7, 700, 959, 956, 975, 484, 426, 738, 508, 201, 527, 816, 136, 668, 624, 535, 108, 1 ,965, 857, 152, 478, 344, 567, 262, 546, 953, 199 ,90, 72, 900, 449, 773, 211, 758, 100, 696, 536, 838, 204, 738, 717, 21, 874, 385, 997, 761, 845, 998, 78, 703, 502, 557, 47, 421, 819, 945, 375, 370, 35, 799, 622, 837, 924, 834, 595, 24 ,882, 483, 862, 438, 221, 931, 811, 448, 317, 809, 561, 162, 159, 640, 217, 662, 197, 616, 435, 368, 562, 162, 739, 949, 962, 713, 786, 238, 899, 733, 263, 781, 217, 477, 220, 790, 409, 383, 590, 726, 192, 152, 240, 352, 792, 458, 366, 341, 74 ,801, 709, 988, 964, 800, 938, 278, 514, 76 ,516, 413, 810 ,131 ,547, 379, 609, 119, 169, 370, 502, 112, 448, 695, 264, 688, 399, 408, 498, 765, 749, 925, 918, 458, 913, 234, 611]))
-func equal2(arr: [Int]) -> Int {
-    var tabRes = arr
-    let min = tabRes.min()!
-    var count = 0
-    for i in 0...tabRes.count - 1 {
-        while tabRes[i] != min {
-            print(tabRes[i])
-            let diff = tabRes[i] - min
-            //if diff == min { break }
-            if diff >= 5 {
-                //print("tabRes[i] - 5")
-                tabRes[i] = tabRes[i] - 5
-                print(tabRes[i])
-            } else if diff >= 2 && diff < 5 {
-                //print("tabRes[i] - 2")
-                tabRes[i] = tabRes[i] - 2
-                print(tabRes[i])
-            } else  {
-                tabRes[i] = tabRes[i] - 1
-                print(tabRes[i])
-                //print("tabRes[i] - 1")
-            }
-            count += 1
+// https://www.hackerrank.com/challenges/alternating-characters/problem
+func alternatingCharactersNotWorking(s: String) -> Int {
+    var nbDeleted = 0
+    _ = s.reduce(into: [Character]()) { partialResult, next in
+        if partialResult.isEmpty {
+            partialResult.append(next)
+            print(partialResult)
+        } else if partialResult.last! != next {
+            partialResult.append(next)
+            print(partialResult)
+        } else {
+            partialResult.removeLast()
+            partialResult.append(next)
+            nbDeleted += 1
+            print(partialResult)
         }
     }
-    return count
-}
-//print(equal2(arr: [32, 125, 120, 78]))
-//print(equal2(arr: [5, 10, 14, 22]))
-//print(equal2(arr: [10, 7, 12, 20]))
-//print(equal2(arr: [2, 2, 3, 7]))
-//print(equal2(arr: [11, 7, 12, 3]))
-//print(equal2(arr: [520, 862, 10, 956, 498, 956, 991, 542, 523, 664, 378, 194, 76 ,90 ,753, 868, 837, 830, 932, 814, 616, 78, 103, 882, 452, 397, 899, 488, 149, 108, 723, 22, 323 ,733 ,330 ,821 ,41 ,322 ,715, 917, 986, 93 ,111, 63 ,535, 864 ,931 ,372, 47 ,215 ,539 ,15 ,294, 642, 897, 98, 391, 796, 939, 540, 257, 662, 562, 580, 747, 893, 401, 789, 215, 468, 58 ,553 ,561 ,169 ,616, 448, 385 ,900 ,173, 432, 115, 712]))
-//print(equal2(arr: [134, 415, 784, 202, 34, 584, 543, 119, 701, 7, 700, 959, 956, 975, 484, 426, 738, 508, 201, 527, 816, 136, 668, 624, 535, 108, 1 ,965, 857, 152, 478, 344, 567, 262, 546, 953, 199 ,90, 72, 900, 449, 773, 211, 758, 100, 696, 536, 838, 204, 738, 717, 21, 874, 385, 997, 761, 845, 998, 78, 703, 502, 557, 47, 421, 819, 945, 375, 370, 35, 799, 622, 837, 924, 834, 595, 24 ,882, 483, 862, 438, 221, 931, 811, 448, 317, 809, 561, 162, 159, 640, 217, 662, 197, 616, 435, 368, 562, 162, 739, 949, 962, 713, 786, 238, 899, 733, 263, 781, 217, 477, 220, 790, 409, 383, 590, 726, 192, 152, 240, 352, 792, 458, 366, 341, 74 ,801, 709, 988, 964, 800, 938, 278, 514, 76 ,516, 413, 810 ,131 ,547, 379, 609, 119, 169, 370, 502, 112, 448, 695, 264, 688, 399, 408, 498, 765, 749, 925, 918, 458, 913, 234, 611]))
-
-func equalOptimized(arr: [Int]) -> Int {
-    let tabRes = arr
-    let min = tabRes.min()!
-    var count = 0
-    for i in 0...tabRes.count - 1 {
-        var diff = tabRes[i] - min
-        var div = 0
-        var modulo = 0
-        if diff >= 5 {
-            div = diff / 5
-            modulo = diff % 5
-            
-            if modulo == 0 {
-                count += div
-                continue
-            }
-            count += div
-            diff = modulo
-        }
-        if diff >= 2 && diff <= 5 {
-            div = diff / 2
-            modulo = diff % 2
-            if modulo == 0 {
-                count += div
-                continue
-            }
-            count += div
-            diff = modulo
-        }
-        if diff == 1 {
-            count += 1
-            continue
-        }
-    }
-    return count
-}
-//print(equalOptimized(arr: [134, 415, 784, 202, 34, 584, 543, 119, 701, 7, 700, 959, 956, 975, 484, 426, 738, 508, 201, 527, 816, 136, 668, 624, 535, 108, 1 ,965, 857, 152, 478, 344, 567, 262, 546, 953, 199 ,90, 72, 900, 449, 773, 211, 758, 100, 696, 536, 838, 204, 738, 717, 21, 874, 385, 997, 761, 845, 998, 78, 703, 502, 557, 47, 421, 819, 945, 375, 370, 35, 799, 622, 837, 924, 834, 595, 24 ,882, 483, 862, 438, 221, 931, 811, 448, 317, 809, 561, 162, 159, 640, 217, 662, 197, 616, 435, 368, 562, 162, 739, 949, 962, 713, 786, 238, 899, 733, 263, 781, 217, 477, 220, 790, 409, 383, 590, 726, 192, 152, 240, 352, 792, 458, 366, 341, 74 ,801, 709, 988, 964, 800, 938, 278, 514, 76 ,516, 413, 810 ,131 ,547, 379, 609, 119, 169, 370, 502, 112, 448, 695, 264, 688, 399, 408, 498, 765, 749, 925, 918, 458, 913, 234, 611]))
-//print(equalOptimized(arr: [2, 2, 3, 7]))
-//print(equalOptimized(arr: [32, 125, 120, 78]))
-//print(equalOptimized(arr: [5, 10, 14, 22]))
-//print(equalOptimized(arr: [520, 862, 10, 956, 498, 956, 991, 542, 523, 664, 378, 194, 76 ,90 ,753, 868, 837, 830, 932, 814, 616, 78, 103, 882, 452, 397, 899, 488, 149, 108, 723, 22, 323 ,733 ,330 ,821 ,41 ,322 ,715, 917, 986, 93 ,111, 63 ,535, 864 ,931 ,372, 47 ,215 ,539 ,15 ,294, 642, 897, 98, 391, 796, 939, 540, 257, 662, 562, 580, 747, 893, 401, 789, 215, 468, 58 ,553 ,561 ,169 ,616, 448, 385 ,900 ,173, 432, 115, 712]))
-
-// https://www.hackerrank.com/challenges/utopian-tree/problem
-func utopianTree(n: Int) -> Int {
-    var res = 1
-    if n == 0 { return 1 }
-    if n == 1 { return 2 }
-    for _ in 1...n/2 {
-        res = (res * 2) + 1
-        print(res)
-    }
-    if n % 2 == 1 { res *= 2 }
-    return res
-}
-//print(utopianTree(n: 9))
+    return nbDeleted
+}// not working time out (ne pas remplir le tableau)
+//print(alternatingCharactersNotWorking(s: "AAABBB"))
 
 // https://www.hackerrank.com/challenges/common-child/problem
 func commonChild2(s1: String, s2: String) -> Int {
@@ -586,7 +479,472 @@ func commonChild2(s1: String, s2: String) -> Int {
     return memo[s2.count]
 }
 
-print(commonChild2(s1: "SHINCHAN", s2: "NOHARAAA"))
+//print(commonChild2(s1: "SHINCHAN", s2: "NOHARAAA"))
 //print(commonChild2(s1: "WEWOUCUIDGCGTRMEZEPXZFEJWISRSBBSYXAYDFEJJDLEBVHHKS", s2: "FDAGCXGKCTKWNECHMRXZWMLRYUCOCZHJRRJBOAJOQJZZVUYXIC"))
 //print(commonChild(s1: "AA", s2: "BB"))
 //print(commonChild2(s1: "ELGGYJWKTDHLXJRBJLRYEJWVSUFZKYHOIKBGTVUTTOCGMLEXWDSXEBKRZTQUVCJNGKKRMUUBACVOEQKBFFYBUQEMYNENKYYGUZSP", s2: "FRVIFOVJYQLVZMFBNRUTIYFBMFFFRZVBYINXLDDSVMPWSQGJZYTKMZIPEGMVOUQBKYEWEYVOLSHCMHPAZYTENRNONTJWDANAMFRX"))
+
+// https://www.hackerrank.com/challenges/weighted-uniform-string/problem
+func weightedUniformStrings(s: String, queries: [Int]) -> [String] {
+    var result = [String]()
+    let first: Character = "a"
+    let last: Character = "z"
+    var lettersValue = [String: Int]()
+    
+    for ascii in first.asciiValue!...last.asciiValue! {
+        let letter = String(describing: UnicodeScalar(ascii))
+        lettersValue[letter] = Int(ascii - 96)
+    }
+    var weightStrings = [Int]()
+    var previous = "1"
+    for l in s {
+        let letter = String(l)
+        if letter != previous {
+            weightStrings.append(lettersValue[letter]!)
+        } else {
+            weightStrings.append(weightStrings.last! + lettersValue[letter]!)
+        }
+        previous = letter
+    }
+    let setSums = Set(weightStrings)
+    for q in queries {
+        if setSums.contains(q) {
+            result.append("Yes")
+        } else { result.append("No") }
+    }
+    print(weightStrings)
+    print(setSums)
+    print(queries)
+    return result
+}
+//print(weightedUniformStrings(s: "abccddde", queries: [1, 3, 12, 5, 9, 10]))
+//print(weightedUniformStrings(s: "aaabbbbcccddd", queries: [5, 9, 7, 8, 12, 5]))
+
+//https://www.hackerrank.com/challenges/morgan-and-a-string/problem
+func morganAndString(a: String, b: String) -> String {
+    var arrA = Array(a.appending("z"))
+    var arrB = Array(b.appending("z"))
+    var res = [String]()
+    for _ in 0...(a.count + b.count - 1) {
+        if String(arrA) < String(arrB) {
+            res.append(String(arrA[0]))
+            arrA.removeFirst()
+        } else {
+            res.append(String(arrB[0]))
+            arrB.removeFirst()
+        }
+    }
+    return res.joined()
+}
+//print(morganAndString(a: "JACK", b: "DANIEL"))
+
+//https://www.hackerrank.com/challenges/gem-stones/problem
+func gemstones(arr: [String]) -> Int {
+    var res = 0
+    let minChar = arr.reduce(100) {
+        min($0, $1.count)
+    }
+    let minString = arr.filter {
+        $0.count == minChar
+    }.first
+    let array = Array(Set(Array(String(minString!))))
+    for letter in array {
+        var count = 0
+        for string in arr {
+            if string.contains(letter) {
+                count += 1
+                continue
+            }
+        }
+        if count == arr.count {
+            print(letter)
+            res += 1
+            print("res \(res)")
+        }
+    }
+    return res
+}
+
+func gemstonesOptimized(arr: [String]) -> Int {
+    let tabSet = arr.map { Set($0) }
+    var result = tabSet.first!
+    for i in 1...tabSet.count - 1 {
+        result = result.intersection(tabSet[i])
+    }
+    return result.count
+}
+//print(gemstonesOptimized(arr: ["acdde", "baccd", "eeabg"]))
+
+func gemstonesFuncOptimized(arr: [String]) -> Int {
+    let tabSet = arr.map { Set($0) }
+    return tabSet.reduce(tabSet.first!) { $0.intersection($1) }.count
+}
+//print(gemstonesFuncOptimized(arr: ["abcdde", "baccd", "eeabg"]))
+
+//https://www.hackerrank.com/challenges/two-characters/problem
+// solution : https://www.hackerrank.com/challenges/two-characters/forum
+func alternateNotWorking(s: String) -> Int {
+    let arrayS = Array(s)
+    var res = arrayS
+    
+    let occurences = arrayS.reduce(into: [:], { partialResult, next in
+        partialResult[next, default: 0] += 1
+    })
+    print(occurences)
+    if s.isEmpty || s.count == 1 {
+        return 0
+    }
+    for i in 1...arrayS.count - 1 {
+        if res.isEmpty || res.count == 1 {
+            return 0
+        }
+        if arrayS[i] == arrayS[i - 1] {
+            res = res.filter { $0 != arrayS[i-1] }
+        }
+        
+        print(res)
+    }
+    return res.count
+}
+//print(alternate(s: "beabeefeab"))
+//print(alternateNotWorking(s: "abaacdabd"))
+//print(alternate(s: "asdcbsdcagfsdbgdfanfghbsfdab"))
+
+func alternate(s: String) -> Int {
+    var result = 0
+    if s.count < 2 {
+        return result
+    } else if s.count == 2 && s.first == s.last {
+        return result
+    }
+    let tabS = Array(s)
+    let setS = Array(Set(tabS).sorted())
+    
+    //let tabS2 = s.map(String.init)
+    //let tabS3 = s.map { String($0) }
+    let numberLetters = Set(tabS).count
+    var tabA = Array(repeating: Array(repeating: "", count: numberLetters), count: numberLetters)
+    var tabCount = Array(repeating: Array(repeating: 0, count: numberLetters), count: numberLetters)
+    var count = 1
+    for char in tabS {
+        count += 1
+        print(Set(tabS).sorted().enumerated())
+        for letter in Set(tabS).sorted().enumerated() {
+            if letter.element == char {
+                for i in 0...numberLetters - 1 {
+                    for j in 0...numberLetters - 1 {
+                        let character = String(char)
+                        print(character)
+                        if i == j {
+                            tabA[i][j] = "-1"
+                            continue
+                        }
+                        if i == letter.offset || j == letter.offset {
+                            if character != tabA[i][j] && tabA[i][j] != "-1" {
+                                tabA[i][j] = character
+                                tabCount[i][j] += 1
+                                
+                            } else {
+                                tabCount[i][j] = 0
+                                tabA[i][j] = "-1"
+                            }
+                        }
+                    }
+                }
+                //                for i in tabA {
+                //                    print(i)
+                //                }
+                //print("-------- \(count)")
+            }
+        }
+    }
+    
+    var tabTuples = [(name: String, value: Int)]()
+    for i in 0...numberLetters - 1 {
+        for j in 0...numberLetters - 1 {
+            if tabA[i][j] != "-1" && tabA[i][j] == tabA[j][i] {
+                tabTuples.append((name: String(setS[i]), value: tabCount[i][j]))
+            }
+        }
+    }
+    let maxValue = tabTuples.reduce(0, {
+        max($0, $1.value)
+    })
+    let tabResults = tabTuples.filter {
+        $0.value == maxValue
+    }.map { $0.name}
+    
+    
+    result = tabS.filter({
+        String($0) == tabResults.first || String($0) == tabResults.last
+    }).count
+    
+    return result
+}
+//print(alternate(s: "abcabfacb"))
+//print(alternate(s: "beabeefeab"))
+//print(alternate(s: "npvpuv"))
+//print(alternate(s: "asvkugfiugsalddlasguifgukvsa"))
+//print(alternate(s: "asdcbsdcagfsdbgdfanfghbsfdab"))
+
+//https://www.hackerrank.com/challenges/strong-password/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
+// Return the minimum number of characters to make the password strong
+func minimumNumber(n: Int, password: String) -> Int {
+    var res = 0
+    let specialCharSet = CharacterSet.init(charactersIn: "!@#$%^&*()-+")
+    let lowerCaseSet = CharacterSet.init(charactersIn: "abcdefghijklmnopqrstuvwxyz")
+    let upperCaseSet = CharacterSet.init(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    let digitCaseSet = CharacterSet.init(charactersIn: "0123456789")
+    if (password.rangeOfCharacter(from: specialCharSet) == nil) { res += 1 }
+    if (password.rangeOfCharacter(from: lowerCaseSet) == nil) { res += 1 }
+    if (password.rangeOfCharacter(from: upperCaseSet) == nil) { res += 1 }
+    if (password.rangeOfCharacter(from: digitCaseSet) == nil) { res += 1 }
+    print("n: \(n)")
+    print("res: \(res)")
+    if res + n < 6 {
+        return res + (6 - (res + n))
+    } else { return res }
+}
+//print(minimumNumber(n: 4, password: "ipg")) // pb de soumission de code avec hackerrank
+
+//https://www.hackerrank.com/challenges/reduced-string/problem
+func superReducedString3(s: String) -> String {
+    let arrayS = Array(s)
+    let resArray = arrayS.reduce(into: [Character]()) { partialResult, nextElement in
+        if partialResult.isEmpty {
+            partialResult.append(nextElement)
+        } else if partialResult.last! != nextElement {
+            partialResult.append(nextElement)
+        } else {
+            partialResult.removeLast()
+        }
+    }
+    if resArray.isEmpty {
+        return "Empty String"
+    }
+    return String(resArray)
+}
+//print(superReducedString3(s: "ab"))
+
+func superReducedString2(s: String) -> String {
+    let arrayS = Array(s)
+    print(arrayS)
+    var resArray = [Character]()
+    resArray.append(arrayS[0])
+    if arrayS.count == 1 {
+        return String(arrayS[0])
+    }
+    for i in 1...arrayS.count - 1 {
+        if !resArray.isEmpty {
+            print("resArray.last: \(resArray.last!) arrayS[i]: \(arrayS[i]) ")
+            if resArray.last! == arrayS[i] {
+                resArray.removeLast()
+                continue
+            } else {
+                resArray.append(arrayS[i])
+            }
+            print(resArray)
+        } else {
+            resArray.append(arrayS[i])
+        }
+    }
+    if resArray.isEmpty {
+        return "Empty String"
+    }
+    return String(resArray)
+}
+//print(superReducedString2(s: "baabb"))
+
+//https://www.hackerrank.com/challenges/camelcase/problem?h_r=next-challenge&h_v=zen
+func camelcase(s: String) -> Int {
+    return s.filter({
+        $0.isUppercase
+    }).count + 1
+}
+//print(camelcase(s: "saveChangesInTheEditor"))
+
+//https://www.hackerrank.com/challenges/reduced-string/problem
+func superReducedString(s: String) -> String {
+    let arrayS = Array(s)
+    print(arrayS)
+    var pairFound = false
+    let result = arrayS.reduce(into: [Character]()) { partialResult, next in
+        print(partialResult)
+        if pairFound == true {
+            partialResult.removeLast()
+            print("pairfound")
+            pairFound = false
+            print(String(partialResult))
+            print("----")
+        }
+        if partialResult.isEmpty {
+            print("empty")
+            partialResult.append(next)
+            print(String(partialResult))
+            print("----")
+        } else if partialResult.last! == next {
+            print(String(partialResult))
+            partialResult.removeLast()
+            
+            partialResult.append(next)
+            pairFound = true
+            print("== next")
+            print(String(partialResult))
+            print("----")
+        } else {
+            partialResult.append(next)
+            print("not egal")
+            print(String(partialResult))
+            print("----")
+        }
+    }
+    //print(String(result))
+    return String(result)
+}
+//print(superReducedString(s: "abba"))
+
+func superReducedString4(s: String) -> String {
+    let arrayS = Array(s)
+    print(arrayS)
+    var resArray = [Character]()
+    //resArray.append(arrayS[0])
+    print(resArray)
+    if arrayS.count == 1 {
+        return String(arrayS[0])
+    }
+    //    else if arrayS.count == 2 {
+    //        if arrayS.first == arrayS.last {
+    //            return ""
+    //        } else {
+    //            return String(arrayS)
+    //        }
+    //    }
+    for i in 2...arrayS.count {
+        //        if resArray.isEmpty {
+        //            resArray.append(arrayS[i-1])
+        //            continue
+        //        }
+        print("arrayS[i]: \(arrayS[i]) arrayS[i-1]: \(arrayS[i-1]) arrayS[i-2]: \(arrayS[i-2])")
+        if arrayS[i-1] != arrayS[i-2] {
+            print("!=")
+            if resArray.isEmpty {
+                resArray.append(arrayS[i-2])
+            }
+            resArray.append(arrayS[i-1])
+            
+        } else {
+            print("==")
+            resArray.append(arrayS[i])
+            
+            
+        }
+        //        if resArray.count < i + 1 {
+        //            print("break")
+        //            break
+        //        }
+        print(resArray)
+    }
+    
+    //print(arrayS)
+    return String(resArray)
+}
+//print(superReducedString4(s: "aab"))
+
+//https://www.hackerrank.com/challenges/funny-string/problem
+func funnyString(s: String) -> String {
+    let tabS = Array(s)
+    let ascciTab = tabS.map({
+        Int($0.asciiValue!)
+    })
+    let ascciTabReversed = Array(ascciTab.reversed())
+    for i in 1...s.count - 1 {
+        if abs(Int(ascciTab[i] - ascciTab[i - 1])) != abs(Int(ascciTabReversed[i] - ascciTabReversed[i - 1])) {
+            return "Not Funny"
+        }
+    }
+    return "Funny"
+}
+//print(funnyString(s: "lmnop"))
+//print(funnyString(s: "holtm"))
+//print(funnyString(s: "acxz"))
+//print(funnyString(s: "bcxz"))
+//print(funnyString(s: "ivvkxq"))
+//print(funnyString(s: "ivvkx"))
+//print(funnyString(s: "uvzxrumuztyqyvpnji")) // expected funny
+//print(funnyString(s: "jkmsxzwrxzy")) // expected not funny
+func funnyStringFunctional(s: String) -> String {
+    let tabS = Array(s)
+    let asciiTab = tabS.map({
+        Int($0.asciiValue!)
+    })
+    print(asciiTab)
+    var tabDifference = [Int]()
+    asciiTab.reduce(0) { partialResult, next in
+        let dif = abs(next - partialResult)
+        tabDifference.append(dif)
+        return next
+    }
+    tabDifference = Array(tabDifference.dropFirst())
+    print(tabDifference)
+    var differenceReversedTab = [Int]()
+    asciiTab.reversed().reduce(0) { partialResult, next in
+        let dif = abs(next - partialResult)
+        differenceReversedTab.append(dif)
+        return next
+    }
+    differenceReversedTab = Array(differenceReversedTab.dropFirst())
+    print(differenceReversedTab)
+    if tabDifference.elementsEqual(differenceReversedTab) {
+        return "Funny"
+    } else { return "Not Funny" }
+}
+
+//print(funnyStringFunctional(s: "lmnop"))
+//print(funnyStringFunctional(s: "holtm"))
+
+func funnyStringFunctional3(s: String) -> String {
+    let tabS = Array(s)
+    let asciiTab = tabS.map({
+        Int($0.asciiValue!)
+    })
+    let tabDifference = asciiTab.reduce(into: [Int]()) { partialResult, next in
+        if partialResult.isEmpty {
+            partialResult.append(next)
+        }
+        let difference = (abs(next - partialResult.last!))
+        partialResult.append(difference)
+        partialResult.append(next)
+    }
+    var tab = [Int]()
+    for i in 0...tabDifference.count - 1 {
+        if i % 2 == 1 {
+            tab.append(tabDifference[i])
+        }
+    }
+    tab.removeFirst()
+    
+    let reversedDifferenceTab = asciiTab.reversed().reduce(into: [Int]()) { partialResult, next in
+        if partialResult.isEmpty {
+            partialResult.append(next)
+        }
+        let difference = (next - partialResult.last!).magnitude
+        partialResult.append(Int(difference))
+        partialResult.append(next)
+    }
+    var reverseTab = [Int]()
+    for i in 0...reversedDifferenceTab.count - 1 {
+        if i % 2 == 1 {
+            reverseTab.append(reversedDifferenceTab[i])
+        }
+    }
+    reverseTab.removeFirst()
+    
+    
+    if tab.elementsEqual(reverseTab) {
+        return "Funny"
+    } else { return "Not Funny" }
+}
+
+//print(funnyStringFunctional3(s: "lmnop"))
+//print(funnyStringFunctional3(s: "holtm"))
+
