@@ -13,7 +13,7 @@ func equal(arr: [Int]) -> Int {
     var diff = 0
     while max != min {
         if max - min < 2 { diff =  1 }
-        else if max - min < 5 { diff =  2 }
+        else if max - min < 5 { diff = 2 }
         else { diff = 5 }
         let maxIndex = tabRes.firstIndex(of: max)
         

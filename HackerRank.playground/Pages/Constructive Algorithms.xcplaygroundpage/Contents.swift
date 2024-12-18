@@ -27,4 +27,4 @@ func gamingArray2(arr: [Int]) -> String { // optimized
     }
     if count % 2 != 0 { return ("BOB") } else { return "ANDY" }
 }
-print(gamingArray2(arr: [2, 3, 5, 4, 1]))
+print(gamingArray(arr: [2, 3, 5, 4, 1]))

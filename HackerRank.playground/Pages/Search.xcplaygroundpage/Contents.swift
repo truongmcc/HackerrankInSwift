@@ -4,6 +4,10 @@ func stringToArray(s: String) -> [Int] {
     let tab = s.components(separatedBy: " ")
     return tab.map {Int($0)!}
 }
+print(stringToArray(s: "12 52 87"))
+let o = stringToArray(s: "12 52 87")
+let s = o.map { String($0)}
+print(s.joined())
 
 // https://www.hackerrank.com/challenges/missing-numbers/problem
 func missingNumbers(arr: [Int], brr: [Int]) -> [Int] {

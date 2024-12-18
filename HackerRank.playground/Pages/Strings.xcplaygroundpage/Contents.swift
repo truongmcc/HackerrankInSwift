@@ -948,3 +948,60 @@ func funnyStringFunctional3(s: String) -> String {
 //print(funnyStringFunctional3(s: "lmnop"))
 //print(funnyStringFunctional3(s: "holtm"))
 
+// https://www.hackerrank.com/challenges/build-a-string/problem
+// soumission qui plante : impossible de checker...
+func buildString(a: Int, b: Int, s: String) -> Int {
+    var cost = 0
+    var subs = s
+    var newS = ""
+    var temp = ""
+    while !subs.isEmpty {
+        print("subs: \(subs)")
+        if let firstChar = subs.first {
+            temp += String(firstChar)
+            print("temp: \(temp)")
+            if !newS.contains(temp) {
+                if temp.count <= 2 {
+                    cost += a
+                    if temp.count == 2 {
+                        newS += temp.prefix(temp.count - 1)
+                    } else {
+                        newS += temp
+                        subs.removeFirst()
+                    }
+                } else {
+                    let minus = min(b, temp.count * a)
+                    cost += minus
+                    newS += temp.prefix(temp.count - 1)
+                }
+                print("newS: \(newS)")
+                print("cost: \(cost)")
+                temp = ""
+            } else {
+                subs.removeFirst()
+                if subs.isEmpty {
+                    if temp.count <= 2 {
+                        cost += a * temp.count
+                    } else {
+                        let minus = min(b, temp.count * a)
+                        cost += minus
+                    }
+                    newS += temp
+                    print("newS: \(newS)")
+                    print("cost: \(cost)")
+                }
+            }
+        }
+        print("------")
+    }
+    return cost
+}
+
+print(buildString(a: 4, b: 5, s: "aabaacaba"))
+//print(buildString(a: 1, b: 3, s: "cabcjpsdaedsasedsascabcjpsddsdaedsasedsa"))
+//print(buildString(a: 1, b: 3, s: "acbbqbbqbb"))
+
+//print(buildString(a: 7890, b: 7891, s: "acbcrsjcrscrsjcrcbcrsjcrscrsjccbcrsjcrscrsjcrcbcrsjrscrsjcrcbcrsjcrscrsjccbcrsjcrscrsjcrcbcsbcbcrsjh"))
+
+
+
